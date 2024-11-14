@@ -24,3 +24,64 @@
 .slick-next:before {
   display: none;
 }
+
+
+
+/* Add these in your CSS file */
+.custom-arrow.next-arrow {
+  right: 0px; /* Default for small screens */
+}
+
+@media (min-width: 640px) { /* Tailwind's sm breakpoint */
+  .custom-arrow.next-arrow {
+    right: 10px;
+  }
+}
+
+@media (min-width: 1024px) { /* Tailwind's lg breakpoint */
+  .custom-arrow.next-arrow {
+    right: 10px;
+  }
+}
+
+@media (min-width: 1280px) { /* Tailwind's lg breakpoint */
+  .custom-arrow.next-arrow {
+    right: -40px;
+  }
+}
+
+@media (min-width: 1536px) { /* Tailwind's 2xl breakpoint */
+  .custom-arrow.next-arrow {
+    right: -50px;
+  }
+}
+
+
+/* Add these styles in your CSS file */
+.custom-arrow.prev-arrow {
+  left: 0px; /* Default for small screens */
+}
+
+@media (min-width: 640px) { /* Tailwind's sm breakpoint */
+  .custom-arrow.prev-arrow {
+    left: 10px;
+  }
+}
+
+@media (min-width: 1024px) { /* Tailwind's lg breakpoint */
+  .custom-arrow.prev-arrow {
+    left: 10px;
+  }
+}
+
+@media (min-width: 1280px) { /* Tailwind's lg breakpoint */
+  .custom-arrow.prev-arrow {
+    left: -40px;
+  }
+}
+
+@media (min-width: 1536px) { /* Tailwind's 2xl breakpoint */
+  .custom-arrow.prev-arrow {
+    left: -50px;
+  }
+}

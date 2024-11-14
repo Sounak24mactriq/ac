@@ -8,7 +8,6 @@ import { Clients, Clientsimg } from "../../../Config/Home/Clients";
 import { CSSProperties } from "react"; // Import CSSProperties for correct typing
 import { MouseEventHandler } from "react"; // Import MouseEventHandler for correct onClick typing
 
-// Custom Previous Arrow Component with correct typings
 function SamplePrevArrow(props: {
   className: string;
   style: CSSProperties;
@@ -21,7 +20,6 @@ function SamplePrevArrow(props: {
       style={{
         ...style,
         display: "block",
-        left: "-40px",
         top: "50%",
         transform: "translateY(-50%)",
         zIndex: 10,
@@ -46,7 +44,6 @@ function SamplePrevArrow(props: {
   );
 }
 
-// Custom Next Arrow Component with correct typings
 function SampleNextArrow(props: {
   className: string;
   style: CSSProperties;
@@ -59,7 +56,6 @@ function SampleNextArrow(props: {
       style={{
         ...style,
         display: "block",
-        right: "-40px",
         top: "50%",
         transform: "translateY(-50%)",
         zIndex: 10,
@@ -88,19 +84,28 @@ function SampleNextArrow(props: {
 const settings: Settings = {
   dots: false,
   arrows: true,
-  infinite: false,
+  infinite: true,
   speed: 500,
-  slidesToShow: 4,
+  slidesToShow: 5,
   slidesToScroll: 1,
   initialSlide: 0,
   prevArrow: <SamplePrevArrow className={""} style={{}} onClick={() => {}} />,
   nextArrow: <SampleNextArrow className={""} style={{}} onClick={() => {}} />,
   responsive: [
     {
+      breakpoint: 1536,
+      settings: {
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+      },
+    },
+    {
       breakpoint: 1024,
       settings: {
         slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToScroll: 1,
         infinite: true,
         dots: true,
       },
@@ -109,7 +114,7 @@ const settings: Settings = {
       breakpoint: 600,
       settings: {
         slidesToShow: 2,
-        slidesToScroll: 2,
+        slidesToScroll: 1,
         initialSlide: 2,
       },
     },
@@ -125,23 +130,28 @@ const settings: Settings = {
 
 const OurClients = () => {
   return (
-    <div className="our-clients container mx-auto p-6">
+    <div className=" container mx-auto p-6">
       <h2 className="text-center text-2xl font-semibold mb-8">
         {Clients[0].title}
       </h2>
-      <Slider {...settings}>
-        {Clientsimg.map((client, index) => (
-          <div key={index} className="client-slide px-2">
-            <Image
-              src={client.url}
-              alt={`Client ${index + 1}`}
-              className="w-full h-auto rounded-lg shadow-md"
-              width={150} // Adjust width as needed
-              height={100} // Adjust height as needed
-            />
-          </div>
-        ))}
-      </Slider>
+      <div className="xl:ml-[100px] xl:mr-[100px] 2xl:ml-[200px] 2xl:mr-[200px]">
+        <Slider {...settings}>
+          {Clientsimg.map((client, index) => (
+            <div key={index}>
+              <Image
+                src={client.url}
+                alt={`Client ${index + 1}`}
+                className="w-full h-full"
+                width={150} // Adjust width as needed
+                height={100} // Adjust height as needed
+              />
+            </div>
+          ))}
+        </Slider>
+      </div>
+      <button className="flex items-center mx-auto rounded-[5px] mt-[10px] justify-center px-2 py-2 bg-green-600 text-white text-center">
+        <p>Know more</p>
+      </button>
     </div>
   );
 };

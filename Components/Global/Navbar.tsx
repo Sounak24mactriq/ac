@@ -6,7 +6,6 @@ import { navdata } from "../../Config/Navbar/data"; // Adjust path as necessary
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true); // Track visibility of default navbar
   const [scrolling, setScrolling] = useState(false); // To manage scroll effect timing
 
   // Toggle mobile menu visibility
@@ -15,10 +14,9 @@ export default function Navbar() {
   // Handle scroll event to update navbar style
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setIsScrolled(true); // Scrolled past 50px
+      if (window.scrollY > 100) {
+        setIsScrolled(true); // Scrolled past 300px
         if (!scrolling) {
-          setIsNavbarVisible(false); // Hide default navbar when scrolling down
           setScrolling(true);
           setTimeout(() => {
             setScrolling(false);
@@ -26,7 +24,6 @@ export default function Navbar() {
         }
       } else {
         setIsScrolled(false);
-        setIsNavbarVisible(true); // Show default navbar when at the top
       }
     };
 
@@ -41,10 +38,10 @@ export default function Navbar() {
       {/* Default Navbar for large screens */}
       <div
         className={`w-full p-4 absolute text-white top-0 left-0 transition-all duration-1000 ease-in-out ${
-          isNavbarVisible ? "block" : "-translate-y-full"
+          !isScrolled ? "block" : "-translate-y-full"
         }`}
       >
-        <nav className="container mx-auto flex justify-between items-center 2xl:pl-5 2xl:pr-8 2xl:pt-2 xl:pr-5 xl:pt-[2px]">
+        <nav className="container mx-auto flex justify-between items-center 2xl:pl-5 2xl:pr-8 2xl:pt-2 xl:pr-5 xl:pt-2">
           {/* Logo */}
           <div className="flex items-center space-x-4">
             <Image
@@ -52,17 +49,31 @@ export default function Navbar() {
               alt="Logo 1"
               width={100}
               height={50}
-              className="2xl:h-full 2xl:w-full xl:h-[35px] xl:w-full"
+              className="2xl:h-[50px] 2xl:w-full xl:h-[35px] xl:w-full 2xl:pb-[7px] mb-[5px] md:mb-[0px]"
             />
           </div>
 
+          {/* Desktop Navigation Links */}
+          <div
+            className={`flex md:space-x-1 lg:space-x-4 xl:space-x-8 uppercase font-semibold `}
+          >
+            {navdata.map((item, index) => (
+              <a
+                key={index}
+                className="hover:text-gray-300 xl:text-[15px] 2xl:text-[18px] lg hidden md:block"
+              >
+                {item.text}
+              </a>
+            ))}
+          </div>
+
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center  mr-[20px]">
             <Image
               src="/Navbar/menu.png" // Path to the hamburger menu image
               alt="Hamburger Menu"
-              width={30}
-              height={30}
+              width={25}
+              height={25}
               onClick={toggleMenu}
               className={isMenuOpen ? "hidden" : "block"}
             />
@@ -72,24 +83,8 @@ export default function Navbar() {
               width={30}
               height={30}
               onClick={toggleMenu}
-              className={isMenuOpen ? "block" : "hidden"}
+              className={` ${isMenuOpen ? "block" : "hidden"} hover:scale-110`} // Example with hover scale and smooth transition
             />
-          </div>
-
-          {/* Desktop Navigation Links */}
-          <div
-            className={`flex md:space-x-1 lg:space-x-4 xl:space-x-8  uppercase font-semibold  md:flex ${
-              isMenuOpen ? "flex-col mt-4" : "hidden md:flex"
-            }`}
-          >
-            {navdata.map((item, index) => (
-              <a
-                key={index}
-                className="hover:text-gray-300 xl:text-[15px] 2xl:text-[18px] lg"
-              >
-                {item.text}
-              </a>
-            ))}
           </div>
         </nav>
       </div>
@@ -100,7 +95,7 @@ export default function Navbar() {
           isScrolled ? "translate-y-0 bg-white text-black" : "-translate-y-full"
         }`}
       >
-        <nav className="container mx-auto flex justify-between items-center">
+        <nav className="container mx-auto flex justify-between items-center 2xl:pl-5 2xl:pr-8 2xl:pt-2 xl:pr-5 xl:pt-2">
           {/* Logo */}
           <div className="flex items-center space-x-4">
             <Image
@@ -108,26 +103,7 @@ export default function Navbar() {
               alt="Logo 2"
               width={100}
               height={50}
-            />
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
-            <Image
-              src="/Navbar/menu.png" // Path to the hamburger menu image
-              alt="Hamburger Menu"
-              width={30}
-              height={30}
-              onClick={toggleMenu}
-              className={isMenuOpen ? "hidden" : "block"}
-            />
-            <Image
-              src="/Navbar/close.png" // Path to the close menu image
-              alt="Close Menu"
-              width={30}
-              height={30}
-              onClick={toggleMenu}
-              className={isMenuOpen ? "block" : "hidden"}
+              className="2xl:h-[50px] 2xl:w-full xl:h-[35px] xl:w-full 2xl:pb-[7px] "
             />
           </div>
 
@@ -138,63 +114,13 @@ export default function Navbar() {
             }`}
           >
             {navdata.map((item, index) => (
-              <a key={index} className="hover:text-gray-700">
+              <a
+                key={index}
+                className="hover:text-green-500 xl:text-[15px] 2xl:text-[18px] lg hidden md:block"
+              >
                 {item.text}
               </a>
             ))}
-          </div>
-        </nav>
-      </div>
-
-      {/* Mobile & Tablet Navbar (Below 1036px) */}
-      <div className={`w-full  fixed top-0 left-0 z-50  md:hidden`}>
-        <nav
-          className={`container  flex justify-between items-center ${
-            isMenuOpen ? "flex-col bg-white h-screen w-full" : "flex"
-          }`}
-        >
-          <div className="flex flex-col">
-            {/* Logo */}
-            <div className="space-x-4">
-              <Image
-                src={navdata[0].logo1 || "/path/to/default-logo.png"} // Fallback logo if not found
-                alt="Logo"
-                width={100}
-                height={50}
-              />
-            </div>
-            {/* Mobile Navigation Links */}
-            <div
-              className={`flex flex-col space-y-4 uppercase font-semibold text-sm ${
-                isMenuOpen ? "block" : "hidden"
-              }`}
-            >
-              {navdata.map((item, index) => (
-                <a key={index} className="hover:text-gray-700">
-                  {item.text}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div>
-            <Image
-              src="/Navbar/menu.png" // Path to the hamburger menu image
-              alt="Hamburger Menu"
-              width={30}
-              height={30}
-              onClick={toggleMenu}
-              className={isMenuOpen ? "hidden" : "block"}
-            />
-            <Image
-              src="/Navbar/close.png" // Path to the close menu image
-              alt="Close Menu"
-              width={30}
-              height={30}
-              onClick={toggleMenu}
-              className={isMenuOpen ? "block" : "hidden"}
-            />
           </div>
         </nav>
       </div>

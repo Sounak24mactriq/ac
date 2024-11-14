@@ -13,9 +13,9 @@ export default function Ourproducts() {
       </div>
 
       {/* Product Grid Layout */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xl:pr-[30px] 2xl:p-[0px]">
         {/* Left Column: Large Image */}
-        <div className="relative h-80 md:h-[400px] col-span-1">
+        <div className="relative h-full col-span-1">
           <Image
             src={Products[0]?.url || "/placeholder.png"}
             alt="Product 1"
@@ -26,9 +26,9 @@ export default function Ourproducts() {
         </div>
 
         {/* Right Column: Three Smaller Images */}
-        <div className="grid grid-rows-2 gap-4 col-span-1">
+        <div className="grid grid-cols-1 md:grid-cols-1 md:grid-rows-2 gap-4 col-span-1">
           {/* Top Right: Second Product */}
-          <div className="relative h-40 md:h-[200px]">
+          <div className="relative h-full ">
             <Image
               src={Products[1]?.url || "/placeholder.png"}
               alt="Product 2"
@@ -39,9 +39,9 @@ export default function Ourproducts() {
           </div>
 
           {/* Bottom Right: Two Products in One Row */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Bottom Left of Right Column: Third Product */}
-            <div className="relative h-40 md:h-[200px]">
+            <div className="relative h-full ">
               <Image
                 src={Products[2]?.url || "/placeholder.png"}
                 alt="Product 3"
@@ -51,7 +51,7 @@ export default function Ourproducts() {
               />
             </div>
             {/* Bottom Right of Right Column: Fourth Product */}
-            <div className="relative h-40 md:h-[200px]">
+            <div className="relative h-full">
               <Image
                 src={Products[3]?.url || "/placeholder.png"}
                 alt="Product 4"
