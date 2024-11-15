@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import React, { useCallback, useRef } from "react";
 import LightGallery from "lightgallery/react";
 import lgThumbnail from "lightgallery/plugins/thumbnail";
@@ -33,12 +32,17 @@ const images: ImageType[] = [
   { src: "/Projects/ab1.jpeg", title: "Project 10", description: "Description 10" },
 ];
 
+// Define the LightGallery instance type
+interface LightGalleryInstance {
+  openGallery: (index: number) => void;
+}
+
 export default function Projects() {
   // Ref for the LightGallery instance
-  const lightGalleryRef = useRef<any>(null); // Use 'any' for now since we are using a third-party library
+  const lightGalleryRef = useRef<LightGalleryInstance | null>(null);
 
   // onInit callback with correct parameter type
-  const onInit = useCallback((detail: { instance: any }) => {
+  const onInit = useCallback((detail: { instance: LightGalleryInstance }) => {
     if (detail && detail.instance) {
       lightGalleryRef.current = detail.instance; // Assign the LightGallery instance to the ref
     }
