@@ -43,8 +43,17 @@ export default function Component() {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-4 sm:p-6 bg-white rounded-lg shadow-sm">
-      <h1 className="text-xl sm:text-2xl font-bold text-center mb-2">
+  <div>
+
+<div className="bg-gray-200 border border-gray-300 w-screen h-[500px] flex items-center justify-center">
+  <p className="text-center text-sm sm:text-base font-medium text-gray-700">
+    Banner
+  </p>
+</div>
+
+    <div className="w-full max-w-2xl mx-auto p-4 sm:p-6 bg-white rounded-lg shadow-sm mt-[50px]">
+   
+      <h1 className="text-xl sm:text-2xl font-bold text-center mb-2 ">
         Upload Resume
       </h1>
       <p className="text-sm text-gray-600 mb-6 text-center">
@@ -168,5 +177,6 @@ export default function Component() {
         </button>
       </form>
     </div>
+  </div>
   );
 }

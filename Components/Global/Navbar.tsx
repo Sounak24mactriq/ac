@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { navdata } from "../../Config/Navbar/data"; // Adjust path as necessary
+import Link from "next/link";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -53,19 +54,25 @@ export default function Navbar() {
             />
           </div>
 
-          {/* Desktop Navigation Links */}
-          <div
-            className={`flex md:space-x-1 lg:space-x-4 xl:space-x-8 uppercase font-semibold `}
-          >
-            {navdata.map((item, index) => (
-              <a
-                key={index}
-                className="hover:text-gray-300 xl:text-[15px] 2xl:text-[18px] lg hidden md:block"
-              >
-                {item.text}
-              </a>
-            ))}
-          </div>
+      {/* Desktop Navigation Links */}
+<div
+  className={`flex md:space-x-1 lg:space-x-4 xl:space-x-8 uppercase font-semibold `}
+>
+  {navdata.map((item, index) => (
+    <div key={index} className="xl:text-[15px] 2xl:text-[18px] lg hidden md:block">
+      {item.link ? (
+        // Use Link for navigation
+        <Link href={item.link} className="hover:text-gray-300">
+          {item.text}
+        </Link>
+      ) : (
+        // For non-link items, render as normal text
+        <span className="hover:text-gray-300 cursor-default">{item.text}</span>
+      )}
+    </div>
+  ))}
+</div>
+
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center  mr-[20px]">
@@ -109,19 +116,26 @@ export default function Navbar() {
 
           {/* Desktop Navigation Links */}
           <div
-            className={`flex space-x-8 uppercase font-semibold text-sm md:flex ${
-              isMenuOpen ? "flex-col mt-4" : "hidden md:flex"
-            }`}
-          >
-            {navdata.map((item, index) => (
-              <a
-                key={index}
-                className="hover:text-green-500 xl:text-[15px] 2xl:text-[18px] lg hidden md:block"
-              >
-                {item.text}
-              </a>
-            ))}
-          </div>
+  className={`flex space-x-8 uppercase font-semibold text-sm md:flex ${
+    isMenuOpen ? "flex-col mt-4" : "hidden md:flex"
+  }`}
+>
+  {navdata.map((item, index) => (
+    <div key={index} className="xl:text-[15px] 2xl:text-[18px] lg hidden md:block">
+      {item.link ? (
+        // Wrap text inside the Link component directly
+        <Link href={item.link} className="hover:text-green-500 cursor-pointer">
+          {item.text}
+        </Link>
+      ) : (
+        // Non-link items just display the text
+        <span className="hover:text-green-500 cursor-default">{item.text}</span>
+      )}
+    </div>
+  ))}
+</div>
+
+
         </nav>
       </div>
     </div>

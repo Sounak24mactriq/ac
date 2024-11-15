@@ -5,7 +5,7 @@ import Hero from "@/Components/Pages/Home/Hero";
 import OurClients from "@/Components/Pages/Home/OurClients";
 import Ourproducts from "@/Components/Pages/Home/Ourproducts";
 import OurProjects from "@/Components/Pages/Home/OurProjects";
-import PCNumber from "@/Components/Pages/PCNumber";
+import PCNumber from "@/Components/Pages/Home/PCNumber";
 
 export default function Home() {
   return (

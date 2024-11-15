@@ -61,7 +61,16 @@ export default function AppointmentBooking() {
   }
 
   return (
-    <div className="container mx-auto p-4 md:p-8">
+
+<div>
+  
+<div className="bg-gray-200 border border-gray-300 w-screen h-[500px] flex items-center justify-center">
+  <p className="text-center text-sm sm:text-base font-medium text-gray-700">
+    Banner
+  </p>
+</div>
+    <div className="container mx-auto p-4 md:p-8 mt-[50px]">
+
       <div className="flex flex-col md:flex-row gap-8">
         {/* Contact Information */}
         <div className="w-full md:w-1/3 space-y-7">
@@ -193,6 +202,7 @@ export default function AppointmentBooking() {
         </div>
       </div>
     </div>
+</div>
   );
 }
 

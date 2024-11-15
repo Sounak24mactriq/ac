@@ -12,5 +12,8 @@ export const productInfo = [
     { url: "/Home/Products/pd1.png" },
     { url: "/Home/Products/pd2.png" },
     { url: "/Home/Products/pd3.png" },
+    { url: "/Home/Products/pd1.png" },
+    { url: "/Home/Products/pd6.png" },
+    { url: "/Home/Products/pd7.png" },
   ];
   

@@ -1,12 +1,14 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { numbers } from "../../Config/Home/number"; // Adjust the import path to match your folder structure
+import { numbers } from "../../../Config/Home/number"; // Adjust the import path to match your folder structure
+import { numberimage } from "../../../Config/Home/number"; // Assuming you import your image data here
 
 export default function PCNumber() {
   const [animatedNumbers, setAnimatedNumbers] = useState(
     Array(numbers.length).fill(0)
   );
   const sectionRef = useRef(null);
+
   useEffect(() => {
     // IntersectionObserver to detect when the component is in view
     const observer = new IntersectionObserver(
@@ -74,24 +76,43 @@ export default function PCNumber() {
   };
 
   return (
-    <div className="flex flex-col space-y-4" ref={sectionRef}>
-      {/* Row 1: Numbers */}
-      <div className="flex justify-between">
-        {animatedNumbers.map((item, index) => (
-          <div key={index} className="flex-1 text-center">
-            <span className="text-2xl font-bold">{item}+</span>
-          </div>
-        ))}
-      </div>
-
-      {/* Row 2: Descriptions */}
-      <div className="flex justify-between">
-        {numbers.map((item, index) => (
-          <div key={index} className="flex-1 text-center">
-            <span className="text-lg">{item.description}</span>
-          </div>
-        ))}
-      </div>
+    <div className="bg-black h-[500px] text-white" ref={sectionRef}>
+  {/* Image Section */}
+  <div className="relative">
+    <div className="flex justify-center py-4 absolute -top-4 left-0 right-0">
+      {numberimage.map((item, index) => (
+        <img
+          key={index}
+          src={item.url}
+          alt="Project Image"
+          className="max-w-full h-auto"
+        />
+      ))}
     </div>
+  </div>
+
+  {/* Data Section: Numbers and Descriptions */}
+  <div className="flex flex-col text-4xl pt-[230px] pl-[150px] pr-[150px]"> {/* Larger text size */}
+    {/* Row 1: Numbers */}
+    <div className="flex space-x-0 ">
+      {animatedNumbers.map((item, index) => (
+        <div key={index} className="flex-1 text-center w-10 border border-red-200">
+          <span className="text-5xl font-bold">{item}+</span> {/* Increase text size */}
+        </div>
+      ))}
+    </div>
+
+    {/* Row 2: Descriptions */}
+    <div className="flex space-x-0">
+      {numbers.map((item, index) => (
+        <div key={index} className="flex-1 text-center">
+          <span className="text-3xl">{item.description}</span> {/* Larger description text */}
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+  
   );
 }
