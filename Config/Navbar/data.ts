@@ -1,8 +1,8 @@
 export const navdata = [
     {
         
-            logo1: "/Navbar/logo.svg",
-            logo2: "/Navbar/logo1.svg",
+            logo1: "/Navbar/logo.png",
+            logo2: "/Navbar/logo.png",
         
     },
     {

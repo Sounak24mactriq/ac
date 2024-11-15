@@ -11,7 +11,7 @@ export default function Believe() {
             key={index}
             className="bg-white md:hidden text-black text-xl sm:text-2xl md:text-3xl font-semibold text-center p-4 rounded-md sm:relative sm:z-10"
           >
-            <div className="text-[25px] ">{textItem.text}</div>
+            <div className="text-[25px]">{textItem.text}</div>
             <div className="text-[20px] pt-[30px]">{textItem.description}</div>
           </div>
         ))
@@ -41,7 +41,7 @@ export default function Believe() {
       )}
 
       {/* On desktop (and larger screens), display video in the background and text on top */}
-      <div className="absolute inset-0  flex flex-col items-center justify-center sm:flex-row sm:text-white sm:bg-black sm:bg-opacity-50">
+      <div className="absolute inset-0 flex flex-col items-center justify-center sm:flex-row sm:text-white sm:bg-black sm:bg-opacity-50">
         {/* Text in front of the video on desktop */}
         {Videotext && Videotext.length > 0 ? (
           Videotext.map((textItem, index) => (
@@ -56,7 +56,7 @@ export default function Believe() {
             </div>
           ))
         ) : (
-          <p>No text available.</p>
+          <p>No text available</p>
         )}
       </div>
     </div>
